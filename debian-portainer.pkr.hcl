@@ -61,7 +61,7 @@ variable "proxmox_node" {
 }
 
 
-source "proxmox-iso" "debian11-portainer" {
+source "proxmox-iso" "debian11-docker" {
 
   proxmox_url = "${var.proxmox_api_url}"
   username = "${var.proxmox_api_token_id}"
@@ -99,7 +99,7 @@ source "proxmox-iso" "debian11-portainer" {
   cloud_init              = true
   cloud_init_storage_pool = var.cloudinit_storage_pool
 
-  vm_name  = "debian11-portainer"
+  vm_name  = "debian11-docker"
   #cpu_type = "EPYC"
   os       = "l26"
   memory   = var.memory
@@ -111,7 +111,7 @@ source "proxmox-iso" "debian11-portainer" {
 }
 
 build {
-  sources = ["source.proxmox-iso.debian11-portainer"]
+  sources = ["source.proxmox-iso.debian11-docker"]
 
    provisioner "ansible" {
       playbook_file = "ansible/playbook.yml"
