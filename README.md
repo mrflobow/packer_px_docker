@@ -1,6 +1,7 @@
-# packer-proxmox-template
+# Debian 11 Proxmox Docker Template
 
 Packer configuration for creating Debian 11 virtual machine templates for Proxmox VE.
+Installs Docker Engine on top of base image.
 
 ## Requirements
 
@@ -24,7 +25,7 @@ Templates are created by converting an existing VM to a template. As soon as the
 Here's how to do all that in one step:
 
 ```sh
-$ packer build debian-11-bullseye.pkr.hcl
+$ packer build -var-file buildvars.pkr.hcl debian-portainer.pkr.hcl
 proxmox: output will be in this color.
 
 ==> proxmox: Creating VM
@@ -41,16 +42,16 @@ Build 'proxmox' finished.
 --> proxmox: A template was created: 102
 ```
 
-Variables from the `debian-11-bullseye.pkr.hcl` can be overidden like so:
+Variables from the `buildvars.pkr.hcl` can be overidden like so:
 
 ```
-$ packer build -var "proxmox_host=10.10.0.10:8006" debian-11-bullseye.pkr.hcl
+$ packer build -var "proxmox_host=10.10.0.10:8006" debian-portainer.pkr.hcl
 ```
 
 or you can just as easily specify a file that contains the variables:
 
 ```sh
-$ packer build -var-file example-variables.pkrvars.hcl debian-11-bullseye.pkr.hcl
+$ packer build -var-file example-variables.pkrvars.hcl debian-portainer.pkr.hcl
 ```
 
 ## Deploy a VM from a Template
@@ -70,3 +71,8 @@ Contributing code-wise - please fork the repository and submit a pull request.
 ## License
 
 MIT
+
+
+## Credits
+
+Base on the work of Roman Tomjak https://github.com/romantomjak/packer-proxmox-template
