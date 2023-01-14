@@ -69,7 +69,7 @@ source "proxmox-iso" "debian11-docker" {
   insecure_skip_tls_verify = true
 
 
-  template_description = "Debian Portainer template. Built on ${formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp())}"
+  template_description = "Debian Docker template. Built on ${formatdate("YYYY-MM-DD hh:mm:ss ZZZ", timestamp())}"
   node                 = var.proxmox_node
   vm_id = 4002
   network_adapters {
